@@ -10,6 +10,7 @@ use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductResource;
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\SingleProductResource;
 
 class ProductsController extends Controller
 {
@@ -37,5 +38,10 @@ class ProductsController extends Controller
             return ResponseHelper::fail($e->getMessage());
         }
 
+    }
+
+    public function getSingleProduct(product $product)
+    {
+        return ResponseHelper::success(SingleProductResource::make($product));
     }
 }

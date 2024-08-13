@@ -31,7 +31,8 @@
         </div>
 
         <div class="p-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div v-for="(product ,index) in getProducts" :key="index" class="bg-white p-4 rounded-lg shadow-md grid-rows-2">
+                    
+            <div @click="addItem(product.id)" v-for="(product ,index) in getProducts" :key="index" class="bg-white p-4 rounded-lg shadow-md grid-rows-2 cursor-pointer">
                 <div>
                     <img class="w-full h-36 object-cover" :src="product.image_path">
                 </div>
@@ -50,19 +51,22 @@ export default {
     name: 'Products',
     data () {
         return {
-            searchKey : ''
-        }
+            searchKey : '' ,
+        } 
     },
     computed: {
         ...mapGetters(['getProducts' ,'getCategories'])
     },
     methods: {
-        ...mapActions(['fetchProducts' , 'fetchCategories' ,'filterByCategory' ,'searchName']),
+        ...mapActions(['fetchSingleProduct','fetchProducts' , 'fetchCategories' ,'filterByCategory' ,'searchName']),
         handleCategory (id){
             this.filterByCategory(id);
         },
         search (key){
             this.searchName(key);
+        },
+        addItem(itemId) {
+            this.fetchSingleProduct(itemId);
         }
     },
     mounted() {

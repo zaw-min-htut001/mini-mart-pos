@@ -13,6 +13,19 @@ const router = createRouter({
     routes,
 })
 
+router.beforeEach((to, from, next) => {
+    const token = localStorage.getItem('token');
+    
+    if (to.matched.some(record => record.meta.auth)) {
+      if (!token) {
+        return next('/login');
+      } else {
+        return next()
+      }
+    }
+    next();
+    
+})
 const app = createApp(App)
 app.use(router)
 app.use(store)

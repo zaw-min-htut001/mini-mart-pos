@@ -14,7 +14,7 @@ class ResponseHelper {
     public static function fail($data,$message='fail')
     {
         return response()->json([
-            'data' => $data,
+            'errors' => $data,
             'message' => $message
         ],422);
     }

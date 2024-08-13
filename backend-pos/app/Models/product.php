@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\supply;
 use App\Models\category;
+use App\Models\SaleItem;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Model;
@@ -86,4 +87,8 @@ class product extends Model implements HasMedia
         return $this->belongsTo(brand::class , 'brand_id');
     }
 
+    public function sale()
+    {
+        return $this->hasMany(SaleItem::class);
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Invoice;
 use App\Enum\UserRoleEnum;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -51,4 +52,8 @@ class User extends Authenticatable
         return $this->role === 'Admin';
     }
 
+    public function invoice()
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }
